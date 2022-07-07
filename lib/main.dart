@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/services.dart';
+
 void main() {
   runApp(const SLC());
 }
@@ -104,25 +106,31 @@ class _StarLifeState extends State<StarLife> {
                           Container(height: 15),
                           Container(
                             child: Row( children: [Text('별의 질량 : ', style: TextStyle(fontSize: 25)), Container(width: 10),
-                              Flexible(child: Container(child: Padding(child: TextField(keyboardType: TextInputType.number, controller: starmass, decoration: InputDecoration(hintText: '이 별은 얼마나 무거운가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
+                              Flexible(child: Container(child: Padding(child: TextField(inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'[0-9e+-]')),
+                              ], controller: starmass, decoration: InputDecoration(hintText: '이 별은 얼마나 무거운가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
                              Text('Kg', style: TextStyle(fontSize: 25)), Container(width: 20),],),
                           ),
                           Container(height: 15),
                           Container(
                             child: Row( children: [Text('별의 반지름 : ', style: TextStyle(fontSize: 25)), Container(width: 10),
-                              Flexible(child: Container(child: Padding(child: TextField(keyboardType: TextInputType.number, controller: starradius, decoration: InputDecoration(hintText: '이 별은 얼마나 큰가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
+                              Flexible(child: Container(child: Padding(child: TextField(inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'[0-9e+-]')),
+                              ], controller: starradius, decoration: InputDecoration(hintText: '이 별은 얼마나 큰가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
                                Text('Km', style: TextStyle(fontSize: 25)), Container(width: 20),],),
                           ),
                           Container(height: 15),
                           Container(
                             child: Row( children: [Text('별의 표면온도 : ', style: TextStyle(fontSize: 25)), Container(width: 10),
-                              Flexible(child: Container(child: Padding(child: TextField(keyboardType: TextInputType.number, controller: startemper, decoration: InputDecoration(hintText: '이 별은 얼마나 뜨거운가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
+                              Flexible(child: Container(child: Padding(child: TextField(inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'[0-9e+-]')),
+                              ], controller: startemper, decoration: InputDecoration(hintText: '이 별은 얼마나 뜨거운가요?',),), padding: EdgeInsets.only(left:10, right: 10)))),
                                Text('K ', style: TextStyle(fontSize: 25)), Container(width: 28),],),
                           ),
 
                           Container(height: 50),
                           Container(child: Column(children: [ Row(children: [Text('핵융합 질량 결손 비율 : 0.7%', style: TextStyle(fontSize: 20))],), Container(height: 5), Row(children: [Text('핵융합 참여 수소 비율 : 10%', style: TextStyle(fontSize: 20))],), Container(height: 5), Row(children: [Text('빛의 속도 : 3 * 10^8 m/s', style: TextStyle(fontSize: 20))],),Container(height: 5), Row(children: [Text('1년 : 3 * 10^7 s,  ', style: TextStyle(fontSize: 20)), Text('π : 3.14', style: TextStyle(fontSize: 20))],)],)),
-                          Row(children: [Text('* 입력되는 값은 모두 제곱을 풀어 써주세요. ex) 3 * 10^7 => 30,000,000', style: TextStyle(fontSize: 20)),],),
+                          Row(children: [Text('* 입력되는 값을 예시처럼 고쳐주세요. \nex) 3 * 10^7 => 3e+7 (e+n = 10^n)', style: TextStyle(fontSize: 20)),],),
                         ]
                     )
                 ),
