@@ -80,6 +80,7 @@ class _StarLifeState extends State<StarLife> {
   dynamic E = 0;
   dynamic SL = 0;
   dynamic SLY = 0;
+  dynamic ET = 0;
   double M = 0;
   double T = 0;
   double R = 0;
@@ -147,6 +148,7 @@ class _StarLifeState extends State<StarLife> {
                     L = Star_light(R, T);
                     dynamic c = 3 * pow(10, 8);
                     E = 0.007 * 0.1 * M * pow(c, 2);
+                    ET = 5.670 * pow(10, -8) * pow(T, 4);
                     SL = Star_life(E, L);
                     dynamic Y = 3 * pow(10, 7);
                     SLY = SL / Y;
@@ -172,7 +174,7 @@ class _StarLifeState extends State<StarLife> {
                           ),
                           Container(height: 35),
                           Container(
-                            child: Row( children: [Text('단위 시간당 방출 에너지는 \n${E} Kg * m^2 / s^3 이고', style: TextStyle(fontSize: 25)), Container(width: 10),
+                            child: Row( children: [Text('단위 시간당 방출 에너지는 ${ET} W * m^-2  이고', style: TextStyle(fontSize: 25)), Container(width: 10),
                                ],),
                           ),
                           Container(height: 35),
